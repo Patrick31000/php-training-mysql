@@ -32,3 +32,10 @@ CREATE TABLE IF NOT EXISTS `hiking` (
   `height_difference` int(6) NOT NULL COMMENT 'in m',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+INSERT INTO `hiking` (`name`, `difficulty`, `distance`, `duration`, `height_difference`)
+VALUES('Le sommet du Piton Béthoune par le tour du Bonnet de Prêtre', 'Très difficile', '5,7km', '4:00:00', '650m'),
+('De Bras Sec au Bras de Cilaos par Palmiste Rouge', 'Moyen', '16,5km', '5:30:00', '1000m'),
+('De la Mare à Joncs à la maison forestière de Bras Sec', 'Facile', '3km', '1:00:00', '250m'),
+('Le Piton Bé Massoune depuis la Mare à Martin', 'Difficile', '19km', '6:30:00', '1200m'),
+('La boucle du sentier de découverte de Cilaos à la Roche Merveilleuse', 'Très facile', '1,4km', '1:00:00', '55m');
