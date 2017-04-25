@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-	<a href="read.php">Liste des données</a>
+	<a href="index.php">Liste des données</a>
 
 <?php
 try{
@@ -29,7 +29,7 @@ $duration = $donnees['duration'];
 $height_difference = $donnees['height_difference'];
 $id=$_GET['id'];
 };
-echo $id;
+
 ?>
 
 	<h1>Modifier une randonnée</h1>
@@ -38,7 +38,7 @@ echo $id;
 echo "<form action='' method='POST'>
 		<div>
 			<label for='name'>Name</label>
-			<input type='text' name='name' value='$name'>
+			<input type='text' name='nom' value='$name'>
 		</div>
 
 		<div>
@@ -65,24 +65,33 @@ echo "<form action='' method='POST'>
 			<label for='height_difference'>Dénivelé</label>
 			<input type='text' name='height_difference' value='$height_difference'>
 		</div>
-		<button type='button' name='button'>Envoyer</button>
+		<button type='submit' name='button'>Envoyer</button>
 	</form>";
 
-$req = $bdd->prepare('UPDATE hiking SET name = :newname, difficulty = :newdifficulty, distance = :newdistance, duration = :newduration, height_difference = :newheight_difference WHERE id=:id');
-$req->execute(array(
-'newname'=>$name,
-'newdifficulty'=>$difficulty,
-'newdistance'=>$distance,
-'newduration'=>$duration,
-'newheight_difference'=>$height_difference,
-'id'=>$_GET['id']
+if(isset($_POST['button'])){	
+
+
+$res=$bdd->prepare('UPDATE hiking SET name = :newname, difficulty = :newdifficulty, distance = :newdistance, duration = :newduration, height_difference = :newheight_difference WHERE id=:id;');
+
+$sql= $res->execute(array(
+	':newname'=>$_POST['nom'],
+	':newdifficulty'=>$_POST['difficulty'],
+	':newdistance'=>intval($_POST['distance']),
+	':newduration'=>$_POST['duration'],
+	':newheight_difference'=>intval($_POST['height_difference']),
+	':id'=>$id
 ));
 
+if ($sql === false){
+	echo "erreur";
+	echo "\nPDOStatement::errorCode(): ";
+	print_r($bdd->errorCode());
+}else{
+echo "La randonnée a bien été modifiée ! : )";
+}
+};
 
-
-	$nb_modifs = $bdd->exec('UPDATE hiking SET name = :newname, difficulty = :newdifficulty, distance = :newdistance, duration = :newduration, height_difference = :newheight_difference ');
-echo $nb_modifs . ' entrées ont été modifiées !';
-
+echo $_POST['nom'];
 
 ?>
 	

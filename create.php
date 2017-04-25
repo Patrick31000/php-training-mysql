@@ -7,7 +7,7 @@
 	
 </head>
 <body>
-	<a href="read.php">Liste des données</a>
+	<a href="index.php">Liste des données</a>
 	<h1>Ajouter</h1>
 	<form action="" method="POST">
 		<div>
