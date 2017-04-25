@@ -91,7 +91,7 @@ echo "La randonnée a bien été modifiée ! : )";
 }
 };
 
-echo $_POST['nom'];
+
 
 ?>
 	

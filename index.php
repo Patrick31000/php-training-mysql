@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Randonnées</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
@@ -26,6 +27,7 @@ catch (Exception $e){
 <th>Distance</th>
 <th>Duration</th>
 <th>Height Difference</th>
+<th>Supprimer</th>
 </tr>
  
 
@@ -41,7 +43,10 @@ while ($donnees = $reponse->fetch()) {
         echo utf8_encode('<td>'.$donnees['distance'].'</td>');
         echo utf8_encode('<td>'.$donnees['duration'].'</td>');
         echo utf8_encode('<td>'.$donnees['height_difference'].'</td>');
-        echo '</tr>';
+        echo utf8_encode('<td><form action="delete.php?id='.$donnees['id'].' " method="post"><button name="delete" type="submit" class="btn btn-danger" title="supprimer">Supprimer</button></form></td>');
+        echo "</tr>";
+
+
 }
     
 
